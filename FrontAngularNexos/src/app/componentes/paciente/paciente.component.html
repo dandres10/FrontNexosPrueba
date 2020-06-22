@@ -1,0 +1,95 @@
+<h1>Paciente</h1>
+<hr />
+<br /><br />
+<form autocomplete="off" [formGroup]="forma">
+    <div class="formulario">
+        <div class="form-group row">
+            <div class="col-4">
+                <h2>Crear</h2>
+                <hr>
+                <label class="col-form-label"><strong>Nombre</strong> </label>
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido" />
+                <small *ngIf="nombreNoValido" class="text-danger">Dato no valido</small>
+
+                <label class="col-form-label"><strong>Apellido</strong> </label>
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido" />
+                <small *ngIf="apellidoNoValido" class="text-danger">Dato no valido</small
+        >
+
+        <label class="col-form-label"><strong>Codigo Postal</strong> </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Codigo Postal"
+          formControlName="codPostal"
+          [class.is-invalid]="codPostalNoValido"
+        />
+        <small *ngIf="codPostalNoValido" class="text-danger"
+          >Dato no valido</small
+        >
+
+        <label class="col-form-label"><strong>Telefono</strong> </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Telefono"
+          formControlName="telefono"
+          [class.is-invalid]="telefonoNoValido"
+        />
+        <small *ngIf="telefonoNoValido" class="text-danger"
+          >Dato no valido</small
+        ><br />
+        <button
+          type="submit"
+          class="btn btn-outline-primary btn-block"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="guardarPaciente()"
+        >
+          Guardar
+        </button>
+      </div>
+      <div class="col-8">
+        <h2>Lista pacientes</h2>
+        <hr>
+        <table class="table" >
+            <thead class="thead-dark">
+              <tr>
+              
+                <th scope="col">Nombre</th>
+                <th scope="col">Codigo postal</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let paciente of listaPaciente">
+                
+                <td>{{paciente.nombre}}</td>
+                <td>{{paciente.codPostal}}</td>
+                <td>{{paciente.telefono}}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btnAcciones">Editar</button>
+                    <button type="button" class="btn btn-outline-primary btnAcciones">Ver</button>
+                    <button type="button" class="btn btn-outline-danger btnAcciones">Eliminar</button>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+          
+         
+      </div>     
+    </div>
+  </div>
+</form>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ '' }}</h5>
+      </div>
+    </div>
+  </div>
+</div>

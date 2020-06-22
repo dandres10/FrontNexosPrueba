@@ -1,8 +1,8 @@
 export interface IPaciente {
-    CodigoPaciente: number;
-    Nombre: string;
-    Apellido: string;
-    CodPostal: string;
-    Telefono: string;
+    codigoPaciente?: number;
+    nombre: string;
+    apellido: string;
+    codPostal: string;
+    telefono: string;
 }
 
