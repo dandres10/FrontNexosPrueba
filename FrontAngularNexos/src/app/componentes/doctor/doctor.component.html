@@ -95,9 +95,9 @@
           <tbody>
             <tr *ngFor="let doctor of listaDoctor">
               <td>{{ doctor.nombre }}</td>
-              <td>{{ doctor.especialidad }}</td>
+              <td>{{ consultarEspecialidad(doctor.especialidad)  }}</td>
               <td>{{ doctor.numeroCredencial }}</td>
-              <td>{{ doctor.hospital }}</td>
+              <td>{{ consultarHospitales(doctor.hospital) }}</td>
               <td>
                 <button
                   type="button"

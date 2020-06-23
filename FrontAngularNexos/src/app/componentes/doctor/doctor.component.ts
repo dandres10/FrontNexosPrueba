@@ -8,6 +8,7 @@ import { EspecialidadService } from '../../servicios/Especialidad/especialidad.s
 import { IEspecialidad } from '../../modelos/Especialidad/IEspecialidad';
 import { HospitalService } from '../../servicios/Hospital/hospital.service';
 import { IHospital } from '../../modelos/Hospital/IHospital';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-doctor',
@@ -25,8 +26,10 @@ export class DoctorComponent {
   repuesta: IRespuesta<IDoctor>;
   hospitalServicio: IHospital;
   especialidadServicio: IEspecialidad;
+  nombreEspecialidad: string;
+  nombreHospital: string;
 
-  constructor(private _servicioDoctorService: DoctorService, private fb: FormBuilder, private router: Router,private _especialidadService:EspecialidadService, private _hospitalService: HospitalService) {
+  constructor(private _servicioDoctorService: DoctorService, private fb: FormBuilder, private router: Router, private _especialidadService: EspecialidadService, private _hospitalService: HospitalService) {
     this.crearFormulario();
     this.listarDoctores();
     this.listarEspecialidadesServicio();
@@ -60,41 +63,38 @@ export class DoctorComponent {
 
   }
 
-listarDoctores(){
+  listarDoctores() {
 
-  this._servicioDoctorService.ConsultarListaGET<IDoctor>().subscribe((respuesta: IRespuesta<IDoctor>) => this.listaDoctor = respuesta.entidades.reverse().slice(0, 5));
+    this._servicioDoctorService.ConsultarListaGET<IDoctor>().subscribe((respuesta: IRespuesta<IDoctor>) => this.listaDoctor = respuesta.entidades.reverse().slice(0, 5));
 
-}
-
-
-listarEspecialidadesServicio(){
-        this._especialidadService.ConsultarListaGET<IEspecialidad>().subscribe((respuesta: IRespuesta<IEspecialidad>)=> this.listaEspecialidades = respuesta.entidades);
-}
-
-consultarEspecialidad(id: number){
-  this.especialidadServicio = {
-    codigoEspecialidad : id
   }
-  this._especialidadService.ConsultarGET<IEspecialidad>(this.especialidadServicio).subscribe((respuesta: IRespuesta<IEspecialidad>) => this.especialidadServicio = respuesta.entidades[0]);
 
-  
-}
 
-listarHospitalesServicio(){
-  this._hospitalService.ConsultarListaGET<IHospital>().subscribe((respuesta: IRespuesta<IHospital>) => this.listaHospitales = respuesta.entidades);
-}
-
-consultarHospitales(id : number){
-  this.hospitalServicio = {
-    codigoHospital: id
+  listarEspecialidadesServicio() {
+    this._especialidadService.ConsultarListaGET<IEspecialidad>().subscribe((respuesta: IRespuesta<IEspecialidad>) => this.listaEspecialidades = respuesta.entidades);
   }
-  this._hospitalService.ConsultarGET<IHospital>(this.hospitalServicio).subscribe((respuesta: IRespuesta<IHospital>) => this.hospitalServicio = respuesta.entidades[0]);
-}
+
+  consultarEspecialidad(id: number) {
+
+    this.nombreEspecialidad = this.listaEspecialidades.find(x => x.codigoEspecialidad === id).nombre;
+    return this.nombreEspecialidad;
+
+
+  }
+
+  listarHospitalesServicio() {
+    this._hospitalService.ConsultarListaGET<IHospital>().subscribe((respuesta: IRespuesta<IHospital>) => this.listaHospitales = respuesta.entidades);
+  }
+
+  consultarHospitales(id: number) {
+    this.nombreHospital = this.listaHospitales.find(x => x.codigoHospital === id).nombre;
+    return this.nombreHospital
+  }
 
 
   guardarDoctor() {
     if (this.forma.valid) {
-     
+
       this.doctor = {
         nombre: this.forma.get('nombre').value,
         apellido: this.forma.get('apellido').value,
@@ -102,7 +102,7 @@ consultarHospitales(id : number){
         hospital: parseInt(this.forma.get('hospital').value),
         numeroCredencial: this.forma.get('numeroCredencial').value
       }
-  
+
 
       this._servicioDoctorService.GuardarPOST<IDoctor>(this.doctor).subscribe((respuesta: IRespuesta<IDoctor>) => this.repuesta = respuesta);
       this.estadoModal();
