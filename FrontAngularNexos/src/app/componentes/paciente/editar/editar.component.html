@@ -1,0 +1,80 @@
+<h1>Editar</h1>
+<hr />
+
+<form autocomplete="off" [formGroup]="forma">
+    <div class="formulario">
+        <div class="form-group row">
+            <div class="col-4">
+                <h2>Crear</h2>
+                <hr />
+                <label class="col-form-label"><strong>Nombre</strong> </label>
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido" />
+                <small *ngIf="nombreNoValido" class="text-danger">Dato no valido</small>
+
+                <label class="col-form-label"><strong>Apellido</strong> </label>
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido" />
+                <small *ngIf="apellidoNoValido" class="text-danger">Dato no valido</small
+        >
+
+        <label class="col-form-label"><strong>Codigo Postal</strong> </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Codigo Postal"
+          formControlName="codPostal"
+          [class.is-invalid]="codPostalNoValido"
+        />
+        <small *ngIf="codPostalNoValido" class="text-danger"
+          >Dato no valido</small
+        >
+
+        <label class="col-form-label"><strong>Telefono</strong> </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Telefono"
+          formControlName="telefono"
+          [class.is-invalid]="telefonoNoValido"
+        />
+        <small *ngIf="telefonoNoValido" class="text-danger"
+          >Dato no valido</small
+        ><br />
+        <button
+          type="submit"
+          class="btn btn-outline-primary btn-block"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="editarPaciente()"
+        >
+          Editar
+        </button>
+      </div>
+      <div class="col-2">
+
+        
+
+        <button
+        type="submit"
+        class="btn btn-outline-primary btn-block"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        (click)="regresar()"
+      >
+        Regresar
+      </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="respuestaEdicionPaciente" class="modal-title">
+          {{ respuestaEdicionPaciente.mensajes[0] }}
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

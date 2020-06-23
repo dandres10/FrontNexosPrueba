@@ -1,0 +1,18 @@
+<h1>Ver Paciente</h1>
+<hr />
+
+<div class="formulario">
+    <div class="row">
+        <div class="col-5">
+            <label>Nombre: {{paciente.nombre}}</label><br>
+            <label>Apellido: {{paciente.apellido}}</label><br>
+            <label>Cod Postal: {{paciente.codPostal}}</label><br>
+            <label>Telefono: {{paciente.telefono}}</label><br>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#exampleModal" (click)="regresar()">
+        Regresar
+      </button>
+        </div>
+    </div>
+</div>
