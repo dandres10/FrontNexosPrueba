@@ -13,6 +13,8 @@ import { PuntosAccesoPaciente } from './transversales/constantes/serviciosRest/P
 import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditarComponent } from './componentes/paciente/editar/editar.component';
+import { VerpacienteComponent } from './componentes/paciente/verpaciente/verpaciente.component';
+
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { EditarComponent } from './componentes/paciente/editar/editar.component'
     NavbarComponent,
     PacienteComponent,
     InicioComponent,
-    EditarComponent
+    EditarComponent,
+    VerpacienteComponent
+    
   ],
   imports: [
     BrowserModule,

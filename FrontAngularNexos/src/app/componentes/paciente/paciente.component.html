@@ -45,6 +45,7 @@
           data-toggle="modal"
           data-target="#exampleModal"
           (click)="guardarPaciente()"
+          (click)="estadoModal()"
         >
           Guardar
         </button>
@@ -63,15 +64,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let paciente of listaPaciente">
+              <tr *ngFor="let paciente of listaPaciente" >
                 
                 <td>{{paciente.nombre}}</td>
                 <td>{{paciente.codPostal}}</td>
                 <td>{{paciente.telefono}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary btnAcciones">Editar</button>
-                    <button type="button" class="btn btn-outline-primary btnAcciones">Ver</button>
-                    <button type="button" class="btn btn-outline-danger btnAcciones">Eliminar</button>
+                    <button type="button" class="btn btn-outline-primary btnAcciones" (click)="editar(paciente.codigoPaciente)">Editar</button>
+                    <button type="button" class="btn btn-outline-primary btnAcciones" (click)="ver(paciente.codigoPaciente)">Ver</button>
+                    <button type="button" class="btn btn-outline-danger btnAcciones" (click)="eliminar(paciente.codigoPaciente)">Eliminar</button>
                 </td>
               </tr>
               
@@ -84,11 +85,11 @@
   </div>
 </form>
 
-<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+<div *ngIf="modal" class="modal" tabindex="-1" role="dialog" id="exampleModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{ '' }}</h5>
+        <h5 *ngIf="repuesta" class="modal-title">{{ repuesta.mensajes[0] }}</h5>
       </div>
     </div>
   </div>

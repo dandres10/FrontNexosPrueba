@@ -26,9 +26,11 @@ export class PacienteService implements IServiciosRest {
   }
 
   EliminarDELETE<IPaciente>(modelo: IPaciente): Observable<IRespuesta<IPaciente>> {
+  
     return this.http.post<IRespuesta<IPaciente>>(this.puntosAccesoPaciente.EliminarPaciente, JSON.stringify(modelo), { headers: header });
   }
   ConsultarGET<IPaciente>(modelo: IPaciente): Observable<IRespuesta<IPaciente>> {
+
     return this.http.post<IRespuesta<IPaciente>>(this.puntosAccesoPaciente.ConsultarPaciente, JSON.stringify(modelo), { headers: header });
   }
 

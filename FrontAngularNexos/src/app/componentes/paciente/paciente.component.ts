@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacienteService } from '../../servicios/Paciente/paciente.service';
 import { IPaciente } from '../../modelos/Paciente/IPaciente';
 import { IRespuesta } from '../../modelos/Respuesta/IRespuesta';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,15 +18,16 @@ export class PacienteComponent {
   listaPaciente: IPaciente[] = [];
   repuesta: IRespuesta<IPaciente>;
   formularioValido: boolean = false;
+  modal: boolean = false;
 
-  constructor(private fb: FormBuilder, private _pacienteService: PacienteService) {
+  constructor(private fb: FormBuilder, private _pacienteService: PacienteService, private router: Router) {
     this.crearFormulario();
     this.listarPacientesServicio();
-   
-    
+
+
   }
 
- 
+
 
 
   crearFormulario() {
@@ -38,9 +40,9 @@ export class PacienteComponent {
   }
 
 
-  listarPacientesServicio(){
-    this._pacienteService.ConsultarListaGET<IPaciente>().subscribe((respuesta: IRespuesta<IPaciente>) => this.listaPaciente = respuesta.entidades.reverse().slice(0,5));
-   
+  listarPacientesServicio() {
+    this._pacienteService.ConsultarListaGET<IPaciente>().subscribe((respuesta: IRespuesta<IPaciente>) => this.listaPaciente = respuesta.entidades.reverse().slice(0, 5));
+
   }
 
 
@@ -62,8 +64,10 @@ export class PacienteComponent {
       this._pacienteService.GuardarPOST<IPaciente>(this.paciente).subscribe((respuesta: IRespuesta<IPaciente>) => this.repuesta = respuesta);
       this.limpiarFormulario();
       this.listarPacientesServicio();
-     
+      this.estadoModal();
+
     }
+    this.estadoModal();
     this.listarPacientesServicio();
   }
 
@@ -92,7 +96,41 @@ export class PacienteComponent {
   }
 
 
-  
+  editar(idPaciente: number) {
+    this.router.navigate(['/editarPaciente', idPaciente]);
+  }
+
+  ver(idPaciente: number){
+    this.router.navigate(['/verPaciente', idPaciente]);
+  }
+
+  eliminar(idPaciente: number){
+    this.paciente = {
+      nombre: '',
+      apellido: '',
+      codPostal: '',
+      telefono: '',
+      codigoPaciente: idPaciente
+
+    }
+    this._pacienteService.EliminarDELETE<IPaciente>(this.paciente).subscribe();
+    
+    setTimeout(()=> {
+
+      this.listarPacientesServicio();
+    },2000)
+  }
+
+  estadoModal() {
+    if (this.modal) {
+      this.modal = false;
+    } else {
+      this.modal = true;
+    }
+  }
+
+
+
 
   get nombreNoValido() {
     return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
