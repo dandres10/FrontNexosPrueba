@@ -14,6 +14,12 @@ import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EditarComponent } from './componentes/paciente/editar/editar.component';
 import { VerpacienteComponent } from './componentes/paciente/verpaciente/verpaciente.component';
+import { DoctorComponent } from './componentes/doctor/doctor.component';
+import { PuntosAccesoDoctor } from './transversales/constantes/serviciosRest/Doctor/PuntosAccesoDoctor';
+import { DoctorEditarComponent } from './componentes/doctor/doctor-editar/doctor-editar.component';
+import { DoctorVerComponent } from './componentes/doctor/doctor-ver/doctor-ver.component';
+import { PuntosAccesoEspecialidad } from './transversales/constantes/serviciosRest/Especialidad/PuntosAccesoEspecialidad';
+import { PuntosAccesoHospital } from './transversales/constantes/serviciosRest/Hospital/PuntosAccesoHospital';
 
 
 
@@ -24,7 +30,10 @@ import { VerpacienteComponent } from './componentes/paciente/verpaciente/verpaci
     PacienteComponent,
     InicioComponent,
     EditarComponent,
-    VerpacienteComponent
+    VerpacienteComponent,
+    DoctorComponent,
+    DoctorEditarComponent,
+    DoctorVerComponent
     
   ],
   imports: [
@@ -35,7 +44,10 @@ import { VerpacienteComponent } from './componentes/paciente/verpaciente/verpaci
     HttpClientModule
   ],
   providers: [
-    PuntosAccesoPaciente],
+    PuntosAccesoPaciente,
+    PuntosAccesoDoctor,
+    PuntosAccesoEspecialidad,
+    PuntosAccesoHospital],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

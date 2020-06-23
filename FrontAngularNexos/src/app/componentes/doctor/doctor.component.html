@@ -1,0 +1,140 @@
+<h1>Doctor</h1>
+<hr />
+<br /><br />
+
+<form autocomplete="off" [formGroup]="forma">
+    <div class="formulario">
+        <div class="form-group row">
+            <div class="col-4">
+                <h2>Crear</h2>
+                <hr />
+                <label class="col-form-label"><strong>Nombre</strong> </label>
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido" />
+                <small *ngIf="nombreNoValido" class="text-danger">Dato no valido</small>
+
+                <label class="col-form-label"><strong>Apellido</strong> </label>
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido" />
+                <small *ngIf="apellidoNoValido" class="text-danger">Dato no valido</small
+        >
+
+        <label class="col-form-label"><strong>Especialidad</strong> </label>
+        <select
+          class="form-control"
+          type="text"
+          placeholder="Especialidad"
+          formControlName="especialidad"
+          [class.is-invalid]="especialidadNoValido"
+        >
+          <option
+            [value]="i + 1"
+            *ngFor="let especialidad of listaEspecialidades; let i = index"
+            >{{ especialidad.nombre }}</option
+          >
+        </select>
+
+        <small *ngIf="especialidadNoValido" class="text-danger"
+          >Dato no valido</small
+        >
+
+        <label class="col-form-label"
+          ><strong>Numero credencial</strong>
+        </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Numero credencial"
+          formControlName="numeroCredencial"
+          [class.is-invalid]="numeroCredencialNoValido"
+        />
+        <small *ngIf="numeroCredencialNoValido" class="text-danger"
+          >Dato no valido</small
+        >
+        <label class="col-form-label"><strong>Hospital</strong> </label>
+
+        <select
+          class="form-control"
+          type="text"
+          placeholder="Hospital"
+          formControlName="hospital"
+          [class.is-invalid]="hospitalNoValido"
+        >
+        <option
+        [value]="i + 1"
+        *ngFor="let hospital of listaHospitales; let i = index"
+        >{{ hospital.nombre }}</option
+      >
+        </select>
+
+        <small *ngIf="hospitalNoValido" class="text-danger"
+          >Dato no valido</small
+        ><br />
+        <button
+          type="submit"
+          class="btn btn-outline-primary btn-block"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          (click)="guardarDoctor()"
+          (click)="estadoModal()"
+        >
+          Guardar
+        </button>
+      </div>
+      <div class="col-8">
+        <h2>Lista pacientes</h2>
+        <hr />
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Especialidad</th>
+              <th scope="col">Numero credencial</th>
+              <th scope="col">Hospital</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doctor of listaDoctor">
+              <td>{{ doctor.nombre }}</td>
+              <td>{{ doctor.especialidad }}</td>
+              <td>{{ doctor.numeroCredencial }}</td>
+              <td>{{ doctor.hospital }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btnAcciones"
+                  (click)="editar(doctor.codigoDoctor)"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary btnAcciones"
+                  (click)="ver(doctor.codigoDoctor)"
+                >
+                  Ver
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger btnAcciones"
+                  (click)="eliminar(doctor.codigoDoctor)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="modal" class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="repuesta" class="modal-title">{{ repuesta.mensajes[0] }}</h5>
+      </div>
+    </div>
+  </div>
+</div>

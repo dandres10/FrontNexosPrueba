@@ -1,4 +1,4 @@
 export interface IHospital {
-    CodigoHospital: number;
-    Nombre: string;
+    codigoHospital?: number;
+    nombre?: string;
 }

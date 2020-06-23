@@ -1,9 +1,9 @@
 export interface IDoctor {
-    CodigoDoctor: number;
-    Nombre: string;
-    Apellido: string;
-    Especialidad: number;
-    NumeroCredencial: string;
-    Hospital: number;
+    codigoDoctor?: number;
+    nombre: string;
+    apellido: string;
+    especialidad: number;
+    numeroCredencial: string;
+    hospital: number;
 }
 
