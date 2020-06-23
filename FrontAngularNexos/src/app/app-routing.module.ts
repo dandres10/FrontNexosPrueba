@@ -5,6 +5,8 @@ import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { EditarComponent } from './componentes/paciente/editar/editar.component';
 import { VerpacienteComponent } from './componentes/paciente/verpaciente/verpaciente.component';
 import { DoctorComponent } from './componentes/doctor/doctor.component';
+import { DoctorVerComponent } from './componentes/doctor/doctor-ver/doctor-ver.component';
+
 
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path: 'editarPaciente/:id', component: EditarComponent},
   {path: 'verPaciente/:id', component: VerpacienteComponent},
   {path: 'doctor', component: DoctorComponent},
+  {path: 'verDoctor/:id', component: DoctorVerComponent},
+  
   {path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];
 

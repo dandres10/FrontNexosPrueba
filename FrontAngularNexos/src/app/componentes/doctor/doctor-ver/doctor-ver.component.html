@@ -1,1 +1,19 @@
-<p>doctor-ver works!</p>
+<h1>Ver Doctor</h1>
+<hr />
+
+<div class="formulario">
+    <div class="row">
+        <div class="col-5">
+            <label>Nombre: {{doctor.nombre}}</label><br>
+            <label>Apellido: {{doctor.apellido}}</label><br>
+            <label>Cod Postal: {{doctor.especialidad}}</label><br>
+            <label>Telefono: {{doctor.numeroCredencial}}</label><br>
+            <label>Telefono: {{doctor.hospital}}</label><br>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#exampleModal" (click)="regresar()">
+        Regresar
+      </button>
+        </div>
+    </div>
+</div>

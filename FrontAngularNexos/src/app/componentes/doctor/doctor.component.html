@@ -17,7 +17,7 @@
                 <small *ngIf="apellidoNoValido" class="text-danger">Dato no valido</small
         >
 
-        <label class="col-form-label"><strong>Especialidad</strong> </label>
+        <label class="col-form-label"><strong>Especialidad</strong> (Seleccionar) </label>
         <select
           class="form-control"
           type="text"
@@ -25,6 +25,8 @@
           formControlName="especialidad"
           [class.is-invalid]="especialidadNoValido"
         >
+        
+      
           <option
             [value]="i + 1"
             *ngFor="let especialidad of listaEspecialidades; let i = index"
@@ -49,7 +51,7 @@
         <small *ngIf="numeroCredencialNoValido" class="text-danger"
           >Dato no valido</small
         >
-        <label class="col-form-label"><strong>Hospital</strong> </label>
+        <label class="col-form-label"><strong>Hospital</strong> (Seleccionar) </label>
 
         <select
           class="form-control"
@@ -99,13 +101,7 @@
               <td>{{ doctor.numeroCredencial }}</td>
               <td>{{ consultarHospitales(doctor.hospital) }}</td>
               <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btnAcciones"
-                  (click)="editar(doctor.codigoDoctor)"
-                >
-                  Editar
-                </button>
+                
                 <button
                   type="button"
                   class="btn btn-outline-primary btnAcciones"
@@ -113,13 +109,7 @@
                 >
                   Ver
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger btnAcciones"
-                  (click)="eliminar(doctor.codigoDoctor)"
-                >
-                  Eliminar
-                </button>
+                
               </td>
             </tr>
           </tbody>

@@ -38,16 +38,14 @@ export class DoctorComponent {
 
 
   editar(id: number) {
-
+      this.router.navigate(['/doctor', id]);
   }
 
   ver(id: number) {
-
+this.router.navigate(['/verDoctor', id])
   }
 
-  eliminar(id: number) {
-
-  }
+  
 
 
   limpiarFormulario() {
@@ -65,7 +63,7 @@ export class DoctorComponent {
 
   listarDoctores() {
 
-    this._servicioDoctorService.ConsultarListaGET<IDoctor>().subscribe((respuesta: IRespuesta<IDoctor>) => this.listaDoctor = respuesta.entidades.reverse().slice(0, 5));
+    this._servicioDoctorService.ConsultarListaGET<IDoctor>().subscribe((respuesta: IRespuesta<IDoctor>) => this.listaDoctor = respuesta.entidades.reverse().slice(0, 3));
 
   }
 
